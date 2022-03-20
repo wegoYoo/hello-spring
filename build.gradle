@@ -1,0 +1,36 @@
+/*
+gradle = 버전 설정하고 라이브러리 떙겨오는 것.
+
+spring boot 설정을 지원하는 사이트
+https://start.spring.io/
+
+plugins - 각종 프로그램의 버전을 설정 및 확인하는 곳, 자바 언어 버전, 등..
+dependencies - import 했던 자료들에 대한 import 의존성 설정
+repositories - 필요에 의해 사용하는 곳.(dependencies의 상위 설정 어디서 imoport 할지..)
+* */
+
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintag', module: 'junit-vintage-engine'
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
